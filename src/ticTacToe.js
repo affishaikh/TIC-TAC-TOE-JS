@@ -19,10 +19,26 @@ const playMove = function(board, player, move) {
   return board;
 };
 
+const createCycler = function() {
+  let turn = 0;
+  return function() {
+    turn++;
+    return turn%2;
+  }
+}
+
+const turnChanger = function() {
+  const cycler = createCycler();
+  const players = [player1, player2];
+  return function() {
+    return players[cycler()];
+  };
+};
+
 const startGame = function() {
   let board = createBoard();
 };
 
 startGame();
 
-module.exports = { playMove, isMoveValid };
+module.exports = { playMove, turnChanger };

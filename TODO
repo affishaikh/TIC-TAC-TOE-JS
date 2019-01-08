@@ -1,3 +1,5 @@
-*   Player1's first move
+*---Done    Player1's first move
     * Store the move in player1's moves
     * Check if the move is valid or not.
+
+*---Done    Change turn to player2
