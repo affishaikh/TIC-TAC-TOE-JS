@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { playMove, turnChanger } = require('../src/ticTacToe.js');
+const { playMove, turnChanger, hasWon } = require('../src/ticTacToe.js');
 
 describe('playMove', function() {
   it('should return board with first move', function() {
@@ -24,6 +24,27 @@ describe('changeTurn', function() {
     const changeTurn = turnChanger();
     const actualOutput = changeTurn();
     const expectedOutput = { name: 'Naman', symbol: 'O', playedMoves: [] };
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+});
+
+describe('hasWon', function() {
+  it('should return true for horizontal winningMoves', function() {
+    const player = { name: 'Aftab', symbol: 'X', playedMoves: [0, 1, 2] };
+    const expectedOutput = true;
+    const actualOutput = hasWon(player);
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+  it('should return true for verical winningMoves', function() {
+    const player = { name: 'Aftab', symbol: 'X', playedMoves: [0, 3, 6] };
+    const expectedOutput = true;
+    const actualOutput = hasWon(player);
+    assert.deepEqual(actualOutput, expectedOutput);
+  });
+  it('should return true for diagonal winningMoves', function() {
+    const player = { name: 'Aftab', symbol: 'X', playedMoves: [0, 4, 8] };
+    const expectedOutput = true;
+    const actualOutput = hasWon(player);
     assert.deepEqual(actualOutput, expectedOutput);
   });
 });
